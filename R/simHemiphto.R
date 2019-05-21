@@ -1,4 +1,4 @@
-beast <- function(data, option=list(),demoGUI=FALSE,...)
+simHemiphoto <- function(data, option=list(),demoGUI=FALSE,...)
 {
   if (!hasArg("data") || is.list(data) || length(data)==1)
   {
