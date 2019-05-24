@@ -16,26 +16,18 @@
 \value{
   The output is an object of class "hemiphoto". It is a data frame with 19 rows; each row corresponds to one LAD type. The columns include. 
   
-  \item{time}{a vector of size \code{1xN}: the times at the N sampled locatons. By default, it is simply set to 1:N}
-  \item{sN}{a vector of size \code{1xM}. \code{sN} gives the mean number of seasonal changepoints for each of the M time series. If \code{data} is a single time series (i.e., M=1), sN will be a scalar.}
-  \item{tN}{a vector of size \code{1xM}. \code{tN} gives the mean number of trend changepoints for each of the M time series. If \code{data} is a single time series, tN will be a scalar.}
-  \item{sNProb}{a matrix of size (\code{option$maxKnotNum_Season+1)xM}. For the i-th time series (i.e.,\code{1=<i<=M}), sNProb[,i] gives a probability distribution of having a certain number of changepoints over the range of [0,option$maxKnotNum_Season]; for example, sNProb[1,i] is the probability of having no seasonal changepoint in the ith time series; sNProb[3,i] is the probability of having two changepoints.}
-  \item{tNProb}{a matrix of size (option$maxKnotNum_Trend+1)xM. For the i-th time series (i.e.,\code{1=<i<=M}), tNProb[,i] gives a probability distribution of having a certain number of trend changepoints over the range of [0,option$maxKnotNum_Trend]; for example, tNprob[1,i] is the probability of having no trend changepoint in the ith time series; sTprob[4,i] is the probability of having 3 (i.e, 4-1) changepoints.}
-  \item{sProb}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), sProb[,i] gives a probability distribution of having a seasonal changepoint at a certain time over the time range of [1,N]. Plotting sProb[,i] will depict a curve of probability-of-being-changepoint over the time for the i-th time series.}
-  \item{tProb}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), tProb[,i] gives a probability distribution of having a trend changepoint at a certain time over the time range of [1,N]. Plotting tProb[,i] will depict a curve of probability-of-being-trend-changepoint over the time for the i-th time series.}
-  \item{s}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), s[,i] gives the best fitted seasonal component.}
-  \item{t}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), t[,i] gives the best fitted trend component.}
-  \item{b}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), b[,i] gives the estimated slope in the fitted trend component over time.}
-  \item{sSD}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), sSD[,i] gives the standard deviations of the fitted SEASONAL component.}
-  \item{tSD}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), tSD[,i] gives the standard deviations of the fitted TREND component.}
-  \item{bSD}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), bSD[,i] gives the standard deviations of estimated SLOPE.}  
-  \item{sCI}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), sCI[,i] gives the 95\% credible intervals of the fitted SEASONAL component.}  
-  \item{tCI}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), tCI[,i] gives the 95\% credible intervals of the fitted TREND component.} 
-  \item{bCI}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), bCI[,i] gives the the 95\% credible intervals of the estimated SLOPE.}
-  \item{horder}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), horder[,i] gives the estimated harmonic order used to approximate the SEASONAL component over time.}
-  \item{torder}{a matrix of size \code{NxM}. For the i-th time series (i.e., \code{1=<i<=M}), torder[,i] gives the estimated polynomial order used to approximate the TREND component over time.}
-  \item{scp}{a matrix of size \code{(option$maxKnotNum_Season)xM}. For the i-th time series (i.e., \code{1=<i<=M}), scp[,i] gives the most possible locations of changepoints in the  the SEASONAL component.}
-  \item{tscp}{a matrix of size \code{(option$maxKnotNum_Trend)xM}. For the i-th time series (i.e., \code{1=<i<=M}), tcp[,i] gives gives the most possible locations of changepoints in the TREND component.}
+  \item{LAD_TYPE}{three-letter acronyms for the 19 common leaf angle distributon (LAD) models, also known as Ross-Nilson functions.}
+  \item{LAI_HA57}{an LAI estimate based on the simple hingle-angle algorithm from the gap fraction observed around the zenith of 57 degree. This algorithim is indepedent of LAD types and the full column is filled with the single LAI estimate throughout.}
+  \item{LAI_Miller}{an LAI estimate using the Miller algorithm from gap fractions estimated from the input data. Similar to the hinge angle aglortihim, the Miller algorithim is indepedent of LAD types and the full column is also filled with the single LAI estimate throughout}
+  \item{LAI_BNR}{LAI estimates using the binary nonliner regression method proposed in Zhao et al. (2019). These estiamtes are LAD-depedenent. Each row corresponds to one of the 19 LAD types.}
+  \item{AIC_BNR}{AIC values calculated by the binary nonliner regression method for the 19 LAD model types. Smaller AIC values indicate beter LAI estimates and better LAD models. The LAD with the smallest AIC value is supposed to give the best LAI estimate.}
+  \item{LAD1_BNR}{the LAD model parameters estimated by the binary nonlinear regression method. Of the 19 LAD models, some are parameter-free, as indicated by NAs in the LAD1_BNR or LAD2_BNR columns; some have only one parameter (i.e,, LAI2_BNR will be NAs); others have two parameters.}
+  \item{LAD2_BNR}{the LAD model parameters estimated by the binary nonlinear regression method. This is the second LAD parameter for those models with two parameters}
+  
+  \item{LAI_BNR}{LAI estimates using the binary nonliner regression method proposed in Zhao et al. (2019). These estiamtes are LAD-depedenent. Each row corresponds to one of the 19 LAD types.}
+  \item{AIC_BNR}{AIC values calculated by the binary nonliner regression method for the 19 LAD model types. Smaller AIC values indicate beter LAI estimates and better LAD models. The LAD with the smallest AIC value is supposed to give the best LAI estimate.}
+  \item{LAD1_BNR}{the LAD model parameters estimated by the binary nonlinear regression method. Of the 19 LAD models, some are parameter-free, as indicated by NAs in the LAD1_BNR or LAD2_BNR columns; some have only one parameter (i.e,, LAI2_BNR will be NAs); others have two parameters.}
+  \item{LAD2_BNR}{the LAD model parameters estimated by the binary nonlinear regression method. This is the second LAD parameter for those models with two parameters}
   
 
 }
