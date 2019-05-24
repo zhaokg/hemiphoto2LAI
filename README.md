@@ -23,7 +23,7 @@ if (!require(devtools)) install.packages('devtools')
 devtools::install_github("zhaokg/hemiphoto2LAI")
 ```
 
-Note that the avove will install "hemiphoto2LAI" from source. Becaues hemiphoto2LAI was written in the mixed use of C/C++ and Fortran. You need to make sure your machine is able to build packages from source. For example, see [Package Development Prerequisites](http://www.rstudio.com/ide/docs/packages/prerequisites) for the tools needed for your operating system. In particular, on Windows platforms, you need to have the Rtools tooklit installed.
+Note that the avove will install "hemiphoto2LAI" from source. Becaues hemiphoto2LAI was written in the mixed use of C/C++ and Fortran. You need to make sure your machine is able to have a C and a Fotran compiler appropriately set up. For example, see [Package Development Prerequisites](http://www.rstudio.com/ide/docs/packages/prerequisites) for the tools needed for your operating system. In particular, on Windows platforms, one option is the Rtools toolkit.
 
 ### 3. Pre-compiled binary
 
