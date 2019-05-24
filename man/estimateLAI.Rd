@@ -1,20 +1,20 @@
-\name{beast}
-\alias{beast}
-\title{Bayesian estimation of abrupt changepoint, nonlinear trend, and periodicity}
+\name{estimateLAI}
+\alias{estimateLAI }
+\title{Estimation of leaf area index and leaf angle distribution from hemiphoto}
 \description{
-  Apply a Bayesian model averaging algorithm to decompose time series data into three contrasting components: Abrupt changes, trends, and cyclic/seasonal variations.
+  Apply the gap-probability theory to invert LAI and LAD from hemiphotos using more than 150 methods.
   }
 \usage{
-    beast(data, option=list(),demoGUI=FALSE,...)
+    estimateLAI(THETA, GAP, option=list(),...)
 }
 \arguments{
-  \item{data}{a vector or matrix of input data. Missing values are allowed and can be indicated by NA, NaN, or a pre-specified value using the option parameter (e.g., option$omittedValue=-9999). If \code{data} is a vector of dimension Nx1 or 1XN, it is just a single time series of length N. If it is a matrix (e.g., NxM), it contains multiple time series. Its row dimension "N" is the time series length; the col dimension "M" is the number of time series.}
-  \item{option}{(optional). If absent, BEAST will use default model parameters. Foremost, the period of the cyclic component of time series will be best guessed via auto-correlation before running BEAST. "Period" must be an integer specifying the number of samples/values per cycle (e.g, a monthly-sampled time series with an annual period has a period of 12). If \code{option} is present, it can be either an integer specifying the period or a list specifying various paramaters for the BEAST decomposition algorithm. Possible parameters are demonstrated below in Example 3 of the Examples Secction.}
-  \item{demoGUI}{a boolean indicator. If set to \code{TRUE}, BEAST will be run in a GUI demostration mode, with a GUI window to show an animation of the MCMC sampling in the model space step by step. Note that "\code{demoGUI=TRUE}"  works only for Windows x64 systems not Windows 32 or Linux/Mac systems.}
+  \item{THETA}{a vector or matrix of input data representing pixel-level zenith angles in radians. Missing values are allowed and can be indicated by NA or NaN.}
+  \item{GAP}{a vector or matrix of input data representing pixel-level gap status: 0 for non-gap and 1 for gap. Missing values are allowed and can be indicated by NA or NaN.}
+  \item{option}{(optional). If absent, estimateLAI will use default model parameters. If \code{option} is present, it can be a list variable specifying various paramaters for the LAI estimation algorithm. Possible parameters are demonstrated below in Example 3 of the Examples Secction.}  
   \item{\dots}{additional parameters, not used currently but reserved for future extension}
 }
 \value{
-  The output is an object of class "beast". It is a list, consistinig of the following components. Suppose that the input data is of size \code{NxM}: N is the time series length and M is the number of time series (\code{M>=1}): 
+  The output is an object of class "hemiphoto". It is a data frame with 19 rows; each row corresponds to one LAD type. The columns include. 
   
   \item{time}{a vector of size \code{1xN}: the times at the N sampled locatons. By default, it is simply set to 1:N}
   \item{sN}{a vector of size \code{1xM}. \code{sN} gives the mean number of seasonal changepoints for each of the M time series. If \code{data} is a single time series (i.e., M=1), sN will be a scalar.}
@@ -42,7 +42,7 @@
 
 \examples{
 
-library(Rbeast)
+library(hemiphoto2LAI)
 
 #A MODIS time series of NDVI for a forest plot in Ohio. It has
 # 23 samples per year (i.e., period=23).
@@ -178,6 +178,6 @@ plot(out,2)
 
 }
 \references{
-Zhao K, Wulder M, Hu, T, Bright R, Wu Q, Qin H, Li Y, Toman E, Mallick B, Zhang X, and Brown M (2019).  Detecting change-point, trend, and seasonality in satellite time series data to track abrupt changes and nonlinear dynamics: A Bayesian ensemble algorithm. Remote Sensing of Environment (accepted manuscript) 
+Zhao et al. (2019). How to better estimate leaf area index and leaf angle distribution from digital hemispherical photography? Switching to a binary nonlinear regression paradigm (under review) 
 }
 \keyword{misc}

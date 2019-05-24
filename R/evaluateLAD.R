@@ -1,4 +1,4 @@
-simHemiphoto <- function(ladType=1,value, option=list(),...)
+evaluateLAD <- function(ladType=1,value, option=list(),...)
 {
   if (!hasArg("ladType") || is.list(ladType))
   {
@@ -30,7 +30,7 @@ if (!hasArg("value") || length(value)==1)
   #}
   
 
-  ANS=.Call("LAI_simulate", ladType,value, option)
+  ANS=.Call("LAI_gfunc", ladType,value, option)
   cat(names(ANS))
   return(ANS)
   #cat("\n\n==================================================================\n")

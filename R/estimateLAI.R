@@ -1,23 +1,36 @@
-simHemiphoto <- function(ladType=1,value, option=list(),...)
+estimateLAI <- function(THETA,GAP,option=list(),...)
 {
-  if (!hasArg("ladType") || is.list(ladType))
+  if (!hasArg("THETA") || !hasArg("GAP"))
   {
-    warning("Something is wrong with the input. Make sure the first input is a string or integer to specify the LAD")
+    warning("Something is wrong with the input. Make sure the first and second inputs are provided!")
     return(NULL)
   }
 
-if (!hasArg("value") || length(value)==1)
+  if ( !(is.vector(THETA) || is.matrix(THETA) ))
   {
-    warning("Something is wrong with the second parameter. Make sure the second paramer  is a vector of two numbers.")
+    warning("Something is wrong with the inputs. Make sure THETA and GAP are either vectors or matrices")
     return(NULL)
   }
 
+  if ( is.vector(THETA) && !( is.vector(GAP) && length(THETA)==length(GAP) ) )
+  {
+    warning("Something is wrong with the inputs. Make sure THETA and GAP are vectors of the same length")
+    return(NULL)
+  }
+
+  if ( is.matrix(THETA) && !( is.matrix(GAP) && dim(THETA)[1]==dim(GAP)[1] && dim(THETA)[2]==dim(GAP)[2])  )
+  {
+    warning("Something is wrong with the inputs. Make sure THETA and GAP are matrices of the same size")
+    return(NULL)
+  }
+  
   if (!is.list(option))
   {
     warning("Something is wrong with the third parameter. Make sure it is a list.")
     return(NULL)
   }
 
+ 
  
   
   #if(season)
@@ -30,8 +43,9 @@ if (!hasArg("value") || length(value)==1)
   #}
   
 
-  ANS=.Call("LAI_simulate", ladType,value, option)
-  cat(names(ANS))
+  ANS=.Call("LAI_estimate", THETA,GAP,option)
+  #cat(names(ANS))
+  class(ANS)=c("hemiphoto","data.frame")
   return(ANS)
   #cat("\n\n==================================================================\n")
   #s=paste("The beast output variable (e.g., x) is a LIST object. Type names(x)", 

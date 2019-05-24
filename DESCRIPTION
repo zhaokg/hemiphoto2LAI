@@ -8,7 +8,7 @@ Authors@R: c(person(given = "Kaiguang", family = "Zhao", role = c("aut", "cre"),
              person(given = "Yang", family = "Li", role = "aut", email = "li.10015@osu.edu") )
 Author: Kaiguang Zhao [aut, cre], Tongxi Hu [aut], Yang Li [aut]
 Maintainer: Kaiguang Zhao <lidar.rs@gmail.com>
-Depends: R (>= 2.10.0),methods, utils
+Depends: R (>= 2.10.0),methods, utils,graphics
 Description: Digital hemispherical photography (i.e., hemiphoto) is a convenient, rapid tool to estimate two key canopy structure parameters: leaf area index (LAI) and leaf angle distribution (LAD). Underlying such use of hemiphotos is a gap probability model widely known as either the Poisson model or Beer's Law to describe light-vegetation interactions. Based on this gap formula, numerous algorithms have been developed to convert hemiphotos into LAI and LAD. The hemiphoto2LAI package implements a total of 135 LAI estimation models, including the majority of classical algorithms proposed through the past several decades and more importantly a newly proposed binary nonlinear regression algorithm (BNR). The implemented algorithms are adopted to a total of 19 common leaf angle distribution models. Details on the BNR algorithm and the package can be found in Zhao et al. (2019).
 LazyData: true
 License: GPL (>= 2)

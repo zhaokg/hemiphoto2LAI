@@ -1,4 +1,4 @@
-plot.beast<-function (x, index, ...) {
+plot.hemiphoto<-function (x, index, ...) {
  #https://stackoverflow.com/questions/39670646/r-github-package-w-devtools-warning-unknown-macro-item
  
   if(missing(index)) {index=1}
