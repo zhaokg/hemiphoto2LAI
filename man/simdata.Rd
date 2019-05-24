@@ -1,5 +1,5 @@
-\name{simdata}
-\alias{simdata}
+\name{sampleGapData}
+\alias{sampleGapData}
 \docType{data}
 \title{Simulated time series to test BEAST}
 \description{
