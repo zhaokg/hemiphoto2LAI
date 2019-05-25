@@ -60,10 +60,11 @@
 
 library(hemiphoto2LAI)
 
-#A MODIS time series of NDVI for a forest plot in Ohio. It has
-# 23 samples per year (i.e., period=23).
-
-data(modis_ohio)
+#--------------------------------Example 1--------------------------------#
+data(sampleGapData) #will load two variables, THETA and GAP, into the R environment
+plot(THETA, GAP)
+result=estimateLAI(THETA, GAP)
+#*****************************End of Example 1****************************#
  
 
 }
