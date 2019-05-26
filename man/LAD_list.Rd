@@ -9,11 +9,11 @@
     data(LAD_list)
 }
 \source{
-Rbeast v0.1
+hemiphoto2LAI v0.1
 }
  
 \examples{
-library(Rbeast)
+library(hemiphoto2LAI)
 
 \donttest{
 data(LAD_list)

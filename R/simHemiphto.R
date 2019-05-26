@@ -1,4 +1,4 @@
-simHemiphoto <- function(ladType=1,value, option=list(),...)
+simHemiphoto <- function(ladType=1,ladParameter, option=list(),...)
 {
   if (!hasArg("ladType") || is.list(ladType))
   {
@@ -6,7 +6,7 @@ simHemiphoto <- function(ladType=1,value, option=list(),...)
     return(NULL)
   }
 
-if (!hasArg("value") || length(value)==1)
+if (!hasArg("ladParameter") || length(ladParameter)==1)
   {
     warning("Something is wrong with the second parameter. Make sure the second paramer  is a vector of two numbers.")
     return(NULL)
@@ -30,7 +30,7 @@ if (!hasArg("value") || length(value)==1)
   #}
   
 
-  ANS=.Call("LAI_simulate", ladType,value, option)
+  ANS=.Call("LAI_simulate", ladType,ladParameter, option)
   cat(names(ANS))
   return(ANS)
   #cat("\n\n==================================================================\n")

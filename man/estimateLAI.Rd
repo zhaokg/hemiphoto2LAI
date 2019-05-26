@@ -1,4 +1,5 @@
 \name{estimateLAI}
+\docType{methods}
 \alias{estimateLAI }
 \title{Estimation of leaf area index and leaf angle distribution from hemiphoto}
 \description{
@@ -10,11 +11,11 @@
 \arguments{
   \item{THETA}{a vector or matrix of input data representing pixel-level zenith angles in radians. Missing values are allowed and can be indicated by NA or NaN.}
   \item{GAP}{a vector or matrix of input data representing pixel-level gap status: 0 for non-gap and 1 for gap. Missing values are allowed and can be indicated by NA or NaN.}
-  \item{option}{(optional). If absent, estimateLAI will use default model parameters. If \code{option} is present, it can be a list variable specifying various paramaters for the LAI estimation algorithm. Possible parameters are demonstrated below in Example 3 of the Examples Secction.}  
+  \item{option}{(optional). If absent, \code{estimateLAI} will use default model parameters. If \code{option} is present, it can be a list variable specifying various paramaters for the LAI estimation algorithm. Possible parameters are demonstrated below in Example 2 of the Examples Secction.}  
   \item{\dots}{additional parameters, not used currently but reserved for future extension}
 }
 \value{
-  The output is an object of class "hemiphoto". It is a data frame with 19 rows; each row corresponds to one LAD type. The column variables include. 
+  The output is an object of class "hemiphoto". It is a data frame with 19 rows; each row corresponds to one LAD type. The column variables include:  
   
   \item{LAD_TYPE}{three-letter acronyms for the 19 common leaf angle distributon (LAD) models, also known as Ross-Nilson functions. Type \code{print(LAD_list)} to see more details about the 19 LAD models. }
   \item{LAI_HA57}{an LAI estimate based on the simple hingle-angle algorithm from the gap fraction observed around the zenith of 57 degree. This algorithim is indepedent of LAD types and the full column is filled with the single LAI estimate throughout.}
@@ -66,11 +67,27 @@ plot(THETA, GAP)
 result=estimateLAI(THETA, GAP)
 #*****************************End of Example 1****************************#
  
+#--------------------------------Example 2--------------------------------#
+data(sampleGapData) #will load two variables, THETA and GAP, into the R environment
+ 
+opt=list()         #Create an empty list to append individual parameters
+opt$ite=200        #the max number of iteration in the conjugate-gradient opitimer
+                   #used to estimate the best LAI and LAD parameers
+opt$gq_knotNum=21  #The number of knots for the Gaussian quadrature (GP). GP is used when
+                   #the LAD model chosen does not have an analyticak form and therefore has to
+                   #evaluated numerically by integrating the associated g(\theta) function
+                   
+opt$nfrac=8        #The number of annuli/zenith intervals chosen to divide the full zenith and caculate
+                   #annulus-level gap fractions. These fractions are the direct input to all the LAI
+                   #algorithms except the binary nonlinear regression algorithm
 
+result=estimateLAI(THETA, GAP,opt)
+#*****************************End of Example 2****************************#
 }
 
 }
 \references{
 Zhao et al. (2019). How to better estimate leaf area index and leaf angle distribution from digital hemispherical photography? Switching to a binary nonlinear regression paradigm (under review) 
 }
+\seealso{ \code{\link[hemiphoto2LAI]{simHemiphoto}}  }
 \keyword{misc}

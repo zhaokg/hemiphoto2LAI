@@ -160,7 +160,7 @@ SEXP DllExport LAI_simulate(SEXP pY1,SEXP pY2,SEXP pOpt)
 		idxGfunc=(int32_t)mxGetScalar(prhs[0]);
 	}
 	inPar=(FLOATPTR)mxGetData(prhs[1]);
-	tmp=mxGetField(prhs[2],0,"randomInput");
+	tmp=mxGetField(prhs[2],0,"scaledParameter");
 	isInputRandomNumber=(tmp==NULL) ? 1 : (int32_t)mxGetScalar(tmp);
 	tmp=mxGetField(prhs[2],0,"LAI");
 	LAI=(tmp==NULL) ? 3L : mxGetScalar(tmp);
@@ -210,7 +210,7 @@ SEXP DllExport LAI_simulate(SEXP pY1,SEXP pY2,SEXP pOpt)
 		MEM.free_all( &MEM);
 		r_error("Error: The input parameter OPTION should be a List variable!\n");
 	}
-	tmpSEXP=getListElement(pOpt,"randomInput");
+	tmpSEXP=getListElement(pOpt,"scaledParameter");
 	isInputRandomNumber=(tmpSEXP !=NULL) ? (PROTECT(tmpSEXP=coerceVector(tmpSEXP,REALSXP)),nprt++,(int)asReal(tmpSEXP)) : 1;
 	tmpSEXP=getListElement(pOpt,"LAI");
 	LAI=(tmpSEXP !=NULL) ? (PROTECT(tmpSEXP=coerceVector(tmpSEXP,REALSXP)),nprt++,(int)asReal(tmpSEXP)) : 3.f;

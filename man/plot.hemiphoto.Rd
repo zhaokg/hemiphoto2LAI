@@ -1,11 +1,11 @@
-\name{plot.beast}
-\alias{plot.beast}
+\name{plot.hemiphoto}
+\alias{plot.hemiphoto}
 \title{Changepoint Detection}
 \description{
   Plot the result obtained from the beast function.
   }
 \usage{
-  \method{plot}{beast}(x, index, ...)
+  \method{plot}{hemiphoto}(x, index, ...)
 }
 \arguments{
   \item{x}{x must be an object of class "beast". It is the returned result from the beast function.}
@@ -19,11 +19,8 @@
  
 \examples{
 \donttest{
-library(Rbeast)
-data(simdata)
-result=beast(simdata)
-plot(result,1)
-plot(result,2)
+library(hemiphoto2LAI)
+ 
 }
 }
 \keyword{misc}
