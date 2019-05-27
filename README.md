@@ -50,3 +50,32 @@ install.packages("https://github.com/zhaokg/hemiphoto2LAI/blob/master/precompile
 install.packages("the link is coming" ,repos=NULL)
 ```
 ## Usage
+
+The main function of this package is "estimateLAI". Below are examples to show how to use it.
+
+
+```R
+library(hemiphoto2LAI)
+
+#--------------------------------Example 1--------------------------------#
+data(sampleGapData) #will load two variables, THETA and GAP, into the R environment
+plot(sampleGapData$THETA, sampleGapData$GAP)
+result=estimateLAI(sampleGapData$THETA, sampleGapData$GAP)
+#*****************************End of Example 1****************************#
+ 
+#--------------------------------Example 2--------------------------------#
+data(sampleGapData) #will load two variables, THETA and GAP, into the R environment
+ 
+opt=list()         #Create an empty list to append individual parameters
+opt$ite=200        #the max number of iteration in the conjugate-gradient opitimer
+                   #used to estimate the best LAI and LAD parameers.
+opt$gq_knotNum=21  #The number of knots for the Gaussian quadrature (GP). GP is used when
+                   #the LAD model chosen does not have an analyticak form and therefore has to
+                   #evaluated numerically by integrating the associated g(\theta) function.
+opt$nfrac=8        # The number of annuli/zenith intervals chosen to divide the full zenith and
+                   # caculate annulus-level gap fractions. These fractions are the direct input
+                   # to all the LAI algorithms except the binary nonlinear regression algorithm.
+
+result=estimateLAI(sampleGapData$THETA, sampleGapData$GAP,opt)
+#*****************************End of Example 2****************************#
+```R
