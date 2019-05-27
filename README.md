@@ -33,17 +33,17 @@ For those users or machines that cann't build the package from source, we will p
 
 #### Windows x86 or x64
 ```R
-install.packages("https://github.com/zhaokg/hemiphoto2LAI/blob/master/precompiled_binary/hemiphoto2LAI_0.1.zip" ,repos=NULL)
+install.packages("https://raw.github.com/zhaokg/hemiphoto2LAI/master/precompiled_binary/hemiphoto2LAI_0.1.zip" ,repos=NULL)
 ```
 
 #### Debian Linux x86 x64
 ```R
-install.packages("https://github.com/zhaokg/hemiphoto2LAI/blob/master/precompiled_binary/hemiphoto2LAI_0.1_R_x86_64-pc-linux-gnu.tar.gz" ,repos=NULL)
+install.packages("https://raw.github.com/zhaokg/hemiphoto2LAI/master/precompiled_binary/hemiphoto2LAI_0.1_R_x86_64-pc-linux-gnu.tar.gz" ,repos=NULL)
 ```
 
 #### Ubuntu Linux x86 x64
 ```R
-install.packages("https://github.com/zhaokg/hemiphoto2LAI/blob/master/precompiled_binary/hemiphoto2LAI_0.1_R_x86_64-pc-linux-gnu_ubuntu.tar.gz" ,repos=NULL)
+install.packages("https://raw.github.com/zhaokg/hemiphoto2LAI/master/precompiled_binary/hemiphoto2LAI_0.1_R_x86_64-pc-linux-gnu_ubuntu.tar.gz" ,repos=NULL)
 ```
 #### Mac
 ```R
