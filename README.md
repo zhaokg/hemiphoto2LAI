@@ -78,4 +78,4 @@ opt$nfrac=8        # The number of annuli/zenith intervals chosen to divide the 
 
 result=estimateLAI(sampleGapData$THETA, sampleGapData$GAP,opt)
 #*****************************End of Example 2****************************#
-```R
+```
