@@ -1,5 +1,6 @@
 #include "abc_000_macro.h"
 #include "hemiphoto.h"
+#include <stdio.h>
 #if defined(__GNUC__)||defined(__CLANG__) 
 DISABLE_WARNING(unused-variable,unused-variable,NOT_USED)
 DISABLE_WARNING(unused-function,unused-function,NOT_USED)
@@ -165,7 +166,7 @@ SEXP allocate_output( RES * _restrict result,int N,int * _restrict nprt,char **g
 	for (rINT i=0; i < N; i++)
 	{
 		char buffer[20];
-		itoa(i+1,buffer,10L);   
+		snprintf(buffer,20,"%d",i+1);
 		buffer[2]=0;
 		buffer[3]=0;
 		SET_STRING_ELT(tmpSEXP,i,mkChar(buffer));
