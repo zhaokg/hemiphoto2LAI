@@ -43,7 +43,10 @@ result=simHemiphoto("es1", c(0.1, NA), opt)
 #*****************************End of Example 1****************************#
  
 
-}
+#\donttest
+#{
+LAI=estimateLAI(result$imageTHETA,result$imageGAP)
+#}
 
 }
 \references{

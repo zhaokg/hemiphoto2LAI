@@ -11,6 +11,7 @@
 }
 
 .onLoad <- function(libname, pkgname) {
+#Run when calling a pakage funciton via "packagename::packagefunction"
    #library.dynam("beast", pkgname, libname )
    utils::data(LAD_list, package=pkgname,         envir=parent.env(environment())) 
    utils::data(sampleGapData, package=pkgname,         envir=parent.env(environment())) 

@@ -35,7 +35,6 @@ opt$scaledParameter=0  #If set to 0, the ladParamter input should be valid value
 result=simHemiphoto("es1", c(0.1, NA), opt)
 #*****************************End of Example 1****************************#
  
-}
 
 }
 \references{
