@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/182922566.svg)](https://zenodo.org/badge/latestdoi/182922566)
 # hemiphoto2LAI (a beta version):  An R package for estimating leaf area index & leaf angle distribution from hemiphotos
 ----
 ## Description
